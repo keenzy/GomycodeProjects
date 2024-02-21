@@ -1,0 +1,27 @@
+CREATE TABLE Clients ( 
+
+customer_id int PRIMARY KEY, nom varchar(255) not null, adresse varchar(255) not null 
+
+);
+
+CREATE TABLE Produits ( 
+
+produit_id int PRIMARY KEY, 
+nom varchar(255) not null, 
+prix float CHECK (prix > 0) not null 
+
+);
+
+CREATE TABLE Commandes (
+
+    order_id int PRIMARY Key,
+    customer_id int not null,
+    produit_id int not null,
+   quantite int not null,
+   date_commande date not null,
+   CONSTRAINT FK_CustomerOrder FOREIGN KEY (customer_id) REFERENCES clients(customer_id),
+   CONSTRAINT FK_ProductOrder FOREIGN KEY (produit_id) REFERENCES produits(produit_id)
+);
+
+ 
+
