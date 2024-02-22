@@ -29,6 +29,7 @@ UPDATE commandes SET quantite=6 WHERE order_id=2;
 Il n'existe pas de 3e client dans la table clients, mais dans l'optique où l'enregistrement existe la requete serai la suivante :
 DELETE FROM clients where customer_id=3;
 
-4)Supprimez le contenu de la table des commandes, puis déposez la table.
+4)Supprimez le contenu de la table des commandes, puis supprimez la table.
 
 DELETE FROM commandes;
+DROP TABLE commandes;
