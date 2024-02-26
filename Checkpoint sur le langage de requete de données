@@ -1,0 +1,21 @@
+Implémenter le modèle de relation fourni à l’aide de SQL ( partie DDL )
+Create TABLE Customer ( 
+  customer_id int PRIMARY key not null AUTO_INCREMENT, 
+  customer_name varchar(255)  not null, 
+  customer_tel varchar(13) not null 
+);
+CREATE TABLE Product (
+  product_id int PRIMARY KEY not null AUTO_INCREMENT, 
+  product_name varchar(255) not null, 
+  category varchar(255) not null, 
+  price float  not null
+);
+CREATE TABLE Orders( 
+  customer_id int not null, 
+  product_id int not null, 
+  orderDate date, 
+  quantity int, 
+  total_amount float, 
+  CONSTRAINT custOrd FOREIGN KEY (customer_id) REFERENCES customer (customer_id), 
+  CONSTRAINT prodOrd FOREIGN KEY (product_id) REFERENCES product (product_id) 
+);
