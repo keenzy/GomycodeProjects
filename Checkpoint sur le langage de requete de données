@@ -21,18 +21,59 @@
     );
 2)Insérez des données dans vos tables ( partie DML )
 
-INSERT INTO customer (customer_name,customer_tel) 
-VALUES 
-('Fatou','774128632'), 
-('Marie','772435051'), 
-('Aziz','774019818');
-INSERT INTO product (product_name,category,price) 
-VALUES 
-('widget','electronique',15000), 
-('gadget','772435051',30000);
-INSERT INTO orders (customer_id,product_id,orderdate,quantity,total_amount) 
-VALUES 
-(1,2,'2024-02-21','4',60000),
-(3,1,'2023-05-13','3',90000), 
-(1,1,'2022-03-21','5',75000),
-(3,2,'2024-02-27','1',30000);
+        INSERT INTO customer (customer_name,customer_tel) 
+        VALUES 
+        ('Fatou','774128632'), 
+        ('Marie','772435051'), 
+        ('Aziz','774019818'),
+        ('Joe','778085693');
+        INSERT INTO product (product_name,category,price) 
+        VALUES 
+        ('widget','electronique',15000), 
+        ('gadget','772435051',30000),
+        ('ebook','electronique',10000);
+        INSERT INTO orders (customer_id,product_id,orderdate,quantity,total_amount) 
+        VALUES 
+        (1,2,'2024-02-21','4',60000),
+        (3,1,'2023-05-13','3',90000), 
+        (1,1,'2022-03-21','5',75000),
+        (3,2,'2024-02-27','1',30000);
+        (4,3,'2024-02-27','2',20000);
+3)Écrivez une requête SQL pour récupérer les noms des clients qui ont passé une commande pour au moins un widget et au moins un gadget, ainsi que le coût total des widgets et gadgets commandés par chaque client.
+ Le coût de chaque article doit être calculé en multipliant la quantité par le prix du produit.
+        SELECT customer_name,(product.price*orders.quantity) as total 
+                FROM customer,orders,product 
+                    WHERE orders.customer_id=customer.customer_id AND orders.product_id=(SELECT product.product_id where product_name='widget' or product_name='gadget') 
+                            GROUP BY orders.customer_id;
+
+SELECT
+    customer.customer_name,
+    SUM(product.price * orders.quantity) AS Coût_Total
+FROM
+    customer
+JOIN
+    orders ON customer.customer_id=orders.customer_id
+JOIN
+    product ON orders.product_id = product.product_id
+WHERE
+    product.product_name IN ('gadget','widget')
+GROUP BY
+   customer.customer_name;
+
+
+4)Écrivez une requête pour récupérer les noms des clients qui ont passé une commande pour au moins un widget, ainsi que le coût total des widgets commandés par chaque client.
+        SELECT customer_name,(product.price*orders.quantity) as total 
+            FROM customer,orders,product WHERE orders.customer_id=customer.customer_id AND orders.product_id=(SELECT product.product_id where product_name='widget')    
+                GROUP BY orders.customer_id;
+5)Écrivez une requête pour récupérer les noms des clients qui ont passé une commande pour au moins un widget, ainsi que le coût total des widgets commandés par chaque client.
+         SELECT customer_name,(product.price*orders.quantity) as total 
+            FROM customer,orders,product WHERE orders.customer_id=customer.customer_id AND orders.product_id=(SELECT product.product_id where product_name='gagdet')    
+                GROUP BY orders.customer_id;
+6)Rédigez une requête pour récupérer les noms des clients qui ont passé une commande pour au moins un doohickey, ainsi que le coût total des doohickeys commandés par chaque client.
+        SELECT customer_name,(product.price*orders.quantity) as total 
+            FROM customer,orders,product WHERE orders.customer_id=customer.customer_id AND orders.product_id=(SELECT product.product_id where product_name='doohickey')    
+                GROUP BY orders.customer_id;
+7)Écrivez une requête pour récupérer le nombre total de widgets et de gadgets commandés par chaque client, ainsi que le coût total des commandes.
+        SELECT SUM(quantity) FROM orders, product where (orders.product_id=product.product_id and product.product_name='gadget') or (orders.product_id=product.product_id and product.product_name='widget');
+8)Écrivez une requête pour récupérer les noms des produits qui ont été commandés par au moins un client, ainsi que la quantité totale de chaque produit commandé.
+
