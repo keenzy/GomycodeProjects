@@ -123,4 +123,4 @@ SELECT
            
         GROUP BY
            product.product_name;
-Rédigez une requête pour récupérer les noms des clients qui ont passé le plus de commandes, ainsi que le nombre total de commandes passées par chaque client.
+9)Rédigez une requête pour récupérer les noms des clients qui ont passé le plus de commandes, ainsi que le nombre total de commandes passées par chaque client.
