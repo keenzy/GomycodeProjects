@@ -124,3 +124,21 @@ SELECT
         GROUP BY
            product.product_name;
 9)Rédigez une requête pour récupérer les noms des clients qui ont passé le plus de commandes, ainsi que le nombre total de commandes passées par chaque client.
+SELECT 
+        customer_name,COUNT(*) as nc FROM customer 
+         JOIN 
+            orders ON orders.customer_id=customer.customer_id
+         JOIN 
+            product ON product.product_id=orders.customer_id
+         GROUP BY customer_name ORDER BY nc DESC LIMIT 3;
+10)Écrivez une requête pour récupérer les noms des produits qui ont été commandés le plus, ainsi que la quantité totale de chaque produit commandé.
+SELECT
+            product_name,COUNT(*) as pc 
+        FROM 
+            product 
+        JOIN 
+            orders ON orders.product_id=product.product_id
+        GROUP BY product_name ORDER BY pc DESC;
+11)Écrivez une requête pour récupérer les noms des clients qui ont passé une commande chaque jour de la semaine, ainsi que le nombre total de commandes passées par chaque client.
+
+                                   
