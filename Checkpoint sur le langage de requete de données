@@ -140,5 +140,12 @@ SELECT
             orders ON orders.product_id=product.product_id
         GROUP BY product_name ORDER BY pc DESC;
 11)Écrivez une requête pour récupérer les noms des clients qui ont passé une commande chaque jour de la semaine, ainsi que le nombre total de commandes passées par chaque client.
-
+SELECT customer_name, COUNT(DISTINCT DATE_FORMAT(orderDate, '%W')) as nombrejour 
+    FROM
+            customer, orders 
+    WHERE
+            customer.customer_id=orders.customer_id 
+    GROUP BY customer.customer_id
+    HAVING COUNT(DISTINCT DATE_FORMAT(orderDate, '%W'))=7;
+;
                                    
