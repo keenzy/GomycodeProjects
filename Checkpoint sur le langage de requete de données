@@ -41,19 +41,19 @@
         (4,3,'2024-02-27','2',20000);
 3)Écrivez une requête SQL pour récupérer les noms des clients qui ont passé une commande pour au moins un widget et au moins un gadget, ainsi que le coût total des widgets et gadgets commandés par chaque client.
  Le coût de chaque article doit être calculé en multipliant la quantité par le prix du produit.
-        SELECT
+       SELECT
             customer.customer_name,
             SUM(product.price * orders.quantity) AS Coût_Total
         FROM
             customer
-        JOIN
+       INNER JOIN
             orders ON customer.customer_id=orders.customer_id
-        JOIN
+       INNER JOIN
             product ON orders.product_id = product.product_id
         WHERE
             product.product_name IN ('gadget','widget')
         GROUP BY
-           customer.customer_name;
+           customer.customer_name HAVING COUNT(DISTINCT product.category) = 2;
 
 
 4)Écrivez une requête pour récupérer les noms des clients qui ont passé une commande pour au moins un widget, ainsi que le coût total des widgets commandés par chaque client.
