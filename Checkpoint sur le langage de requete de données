@@ -53,7 +53,7 @@
         WHERE
             product.product_name IN ('gadget','widget')
         GROUP BY
-           customer.customer_name HAVING COUNT(DISTINCT product.category) = 2;
+           customer.customer_id HAVING COUNT(DISTINCT product.category) = 2;
 
 
 4)Écrivez une requête pour récupérer les noms des clients qui ont passé une commande pour au moins un widget, ainsi que le coût total des widgets commandés par chaque client.
@@ -69,7 +69,7 @@
         WHERE
             product.product_name LIKE '%widget%'
         GROUP BY
-           customer.customer_name;
+           customer.customer_id;
 5)Écrivez une requête pour récupérer les noms des clients qui ont passé une commande pour au moins un gadget, ainsi que le coût total des gadgets commandés par chaque client.
            SELECT
             customer.customer_name,
@@ -83,7 +83,7 @@
         WHERE
             product.product_name LIKE '%gadget%'
         GROUP BY
-           customer.customer_name;
+           customer.customer_id;
 6)Rédigez une requête pour récupérer les noms des clients qui ont passé une commande pour au moins un doohickey, ainsi que le coût total des doohickeys commandés par chaque client.
          SELECT
             customer.customer_name,
@@ -97,7 +97,7 @@
         WHERE
             product.product_name LIKE '%doohickey%'
         GROUP BY
-           customer.customer_name;
+           customer.customer_id;
 7)Écrivez une requête pour récupérer le nombre total de widgets et de gadgets commandés par chaque client, ainsi que le coût total des commandes.
         SELECT
             customer_name,SUM(quantity) AS 'Total commandé'
@@ -110,7 +110,7 @@
         WHERE
             product.product_name IN ('gadget','widget')
         GROUP BY
-           customer.customer_name;
+           customer.customer_id;
 8)Écrivez une requête pour récupérer les noms des produits qui ont été commandés par au moins un client, ainsi que la quantité totale de chaque produit commandé.
 SELECT
             product_name,SUM(quantity) AS 'Total commandé'
@@ -122,7 +122,7 @@ SELECT
             product ON orders.product_id = product.product_id
            
         GROUP BY
-           product.product_name;
+           product.product_id;
 9)Rédigez une requête pour récupérer les noms des clients qui ont passé le plus de commandes, ainsi que le nombre total de commandes passées par chaque client.
 SELECT 
         customer_name,COUNT(*) as nc FROM customer 
