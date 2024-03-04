@@ -68,10 +68,12 @@ SELECT FirstName, LastName FROM producer ORDER BY LastName;
 
 SELECT * FROM PRODUCER WHERE Region = 'Sousse';
 
-7) Quantité totale de vin produit pour le numero 12
+7) Quantité totale de vin produit pour le vin numero 12
 
-SELECT FirstName, LastName, SUM(Quantity) as 'Quantité produite' FROM harvest
-JOIN producer WHERE producer.ID_Producer=harvest.ID_Producer and producer.ID_Producer=12;
+SELECT w.Name_wine, SUM(Quantity) as 'Quantité produite' 
+FROM harvest
+JOIN wine w 
+WHERE w.ID_wine=harvest.ID_wine  and w.ID_wine=12;
 
 
 8)Calculez la quantité de vin produite par catégorie
