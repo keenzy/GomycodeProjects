@@ -86,7 +86,7 @@ ON h.ID_wine = w.ID_wine GROUP BY w.category;
 SELECT p.FirstName,p.LastName,h.Quantity FROM Producer p JOIN Harvest h ON p.ID_Producer = h.ID_Producer WHERE h.Quantity>300 GROUP BY p.ID_Producer ORDER by LastName ASC;
 
 
-10-
+10-Énumérez les numéros de vin qui ont un degré supérieur à 12 et qui ont été produits par le producteur numéro 24.
 
 SELECT p.FirstName,p.LastName,w.Name_wine,w.degree FROM Producer p JOIN Harvest h ON p.ID_Producer = h.ID_Producer
 JOIN wine w ON W.ID_wine=h.ID_Wine
